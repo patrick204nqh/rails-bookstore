@@ -1,0 +1,10 @@
+.bundle/
+log/*.log
+pkg/
+spect/dummy/db/*.sqlite3
+spect/dummy/db/*.sqlite3-journal
+spect/dummy/log/*.log
+spect/dummy/node_modules/
+spect/dummy/yarn-error.log
+spect/dummy/storage/
+spect/dummy/tmp/

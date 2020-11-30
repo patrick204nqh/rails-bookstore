@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 5.2.4", ">= 5.2.4.4"
 
+  spec.add_dependency "devise"
   spec.add_dependency "sass-rails"
   spec.add_dependency "bootstrap"
 end

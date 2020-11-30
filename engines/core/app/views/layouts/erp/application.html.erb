@@ -16,6 +16,16 @@
     <p class="alert alert-danger"><%= alert %></p>
   <% end %>
 
+  <% if user_signed_in? %>
+    <li>
+      <%= link_to('Logout', erp.destroy_user_session_path, method: :delete) %>        
+    </li>
+  <% else %>
+    <li>
+      <%= link_to('Login', erp.new_user_session_path) %>  
+    </li>
+  <% end %>
+  
   <%= yield %>
 
 </body>

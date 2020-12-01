@@ -1,4 +1,4 @@
 module Erp
-  module BookHelper
+  module BooksHelper
   end
 end

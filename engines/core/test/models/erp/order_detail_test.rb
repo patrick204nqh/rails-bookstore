@@ -1,9 +1,7 @@
 require 'test_helper'
 
 module Erp
-  class BookControllerTest < ActionDispatch::IntegrationTest
-    include Engine.routes.url_helpers
-
+  class OrderDetailTest < ActiveSupport::TestCase
     # test "the truth" do
     #   assert true
     # end

@@ -62,3 +62,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'erp_core', path: 'engines/core'
+
+gem "faker", "~> 2.15"

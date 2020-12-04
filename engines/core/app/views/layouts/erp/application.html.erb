@@ -56,17 +56,25 @@
     </label>
   </div>
   <% end %>
+
+
 <div class="container mx-auto">
+<% if current_user.present? %>
 <nav class="bg-gray-200 font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline">
   <div><a href="/" class="text-2xl no-underline text-gray-darkest">PatrickStore</a></div>
   <div>
-  <a href="/" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">
+  <a href="/" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-4">
     Orders
   </a>
-  <a href="/users" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">
+  <a href="/users" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-4">
     Accounts
   </a>
-  <a href="/" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">
+    <% if current_user.admin? %>
+      <a href="/admin" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-4">
+      Admin
+      </a>
+    <% end %>
+  <a href="/" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-4">
     <% if user_signed_in? %>
         <%= link_to('Logout', erp.destroy_user_session_path, method: :delete) %>
     <% else %>
@@ -75,6 +83,7 @@
   </a>
   </div>
 </nav>
+<% end %>
 
   <%= yield %>
 </div>

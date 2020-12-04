@@ -1,32 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Karl Patrick</title>
+  <title>PatrickStore</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
+  <%# javascript_pack_tag "application" %>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    "erp/application", media: "all" %>
   <%= javascript_include_tag "erp/application" %>
+  <style>
+    .alert-toast {
+      -webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    /*Toast close animation*/
+    .alert-toast input:checked ~ * {
+      -webkit-animation: fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          animation: fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    /* -------------------------------------------------------------
+    * Animations generated using Animista * w: http://animista.net,
+    * ---------------------------------------------------------- */
+
+    @-webkit-keyframes slide-in-top{0%{-webkit-transform:translateY(-1000px);transform:translateY(-1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes slide-in-top{0%{-webkit-transform:translateY(-1000px);transform:translateY(-1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@-webkit-keyframes slide-out-top{0%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}100%{-webkit-transform:translateY(-1000px);transform:translateY(-1000px);opacity:0}}@keyframes slide-out-top{0%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}100%{-webkit-transform:translateY(-1000px);transform:translateY(-1000px);opacity:0}}@-webkit-keyframes slide-in-bottom{0%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@keyframes slide-in-bottom{0%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}100%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}}@-webkit-keyframes slide-out-bottom{0%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}100%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}}@keyframes slide-out-bottom{0%{-webkit-transform:translateY(0);transform:translateY(0);opacity:1}100%{-webkit-transform:translateY(1000px);transform:translateY(1000px);opacity:0}}@-webkit-keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes slide-in-right{0%{-webkit-transform:translateX(1000px);transform:translateX(1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@-webkit-keyframes fade-out-right{0%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}100%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}}@keyframes fade-out-right{0%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}100%{-webkit-transform:translateX(50px);transform:translateX(50px);opacity:0}}
+
+  </style>
 </head>
 <body>
+<%# Notification %>
   <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
+    <div class="alert-toast fixed bottom-0 right-0 m-8 w-5/6 md:w-full max-w-sm">
+    <input type="checkbox" class="hidden" id="footertoast">
 
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to('Logout', erp.destroy_user_session_path, method: :delete) %>        
-    </li>
-  <% else %>
-    <li>
-      <%= link_to('Login', erp.new_user_session_path) %>  
-    </li>
+    <label class="close cursor-pointer flex items-start justify-between w-full p-2 bg-green-500 h-24 rounded shadow-lg text-white" title="close" for="footertoast">
+      <%= notice %>
+
+      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+      </svg>
+    </label></div>
   <% end %>
-  
+  <%# Alert authenticated %>
+  <% if alert %>
+   <div class="alert-toast fixed bottom-0 right-0 m-8 w-5/6 md:w-full max-w-sm">
+    <input type="checkbox" class="hidden" id="footertoast">
+
+    <label class="close cursor-pointer flex items-start justify-between w-full p-2 bg-red-500 h-24 rounded shadow-lg text-white" title="close" for="footertoast">
+      <%= alert %>
+
+      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+      </svg>
+    </label>
+  </div>
+  <% end %>
+<div class="container mx-auto">
+<nav class="bg-gray-200 font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline">
+  <div><a href="/" class="text-2xl no-underline text-gray-darkest">PatrickStore</a></div>
+  <div>
+  <a href="/" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">
+    Orders
+  </a>
+  <a href="/users" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">
+    Accounts
+  </a>
+  <a href="/" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">
+    <% if user_signed_in? %>
+        <%= link_to('Logout', erp.destroy_user_session_path, method: :delete) %>
+    <% else %>
+        <%= link_to('Login', erp.new_user_session_path) %>
+    <% end %>
+  </a>
+  </div>
+</nav>
+
   <%= yield %>
+</div>
 
 </body>
 </html>

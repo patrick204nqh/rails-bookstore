@@ -1,5 +1,0 @@
-Erp::User.destroy_all
-Erp::Book.destroy_all
-
-10.times do
-  Erp::User.create(email: Faker::Email)

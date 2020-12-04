@@ -4,5 +4,6 @@ module Erp
     # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable
+    has_many :orders, class_name: "Erp::Order"
   end
 end

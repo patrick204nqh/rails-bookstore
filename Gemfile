@@ -61,6 +61,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'erp_core', path: 'engines/core'
-
 gem "faker", "~> 2.15"
+gem "jquery", "~> 0.0.1"
+gem "jquery-rails", "~> 4.4"
+
+gem 'erp_core', path: 'engines/core'

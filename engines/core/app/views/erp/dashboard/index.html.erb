@@ -1,2 +1,33 @@
-<div class="container">hello, world</div>
 
+<div class="flex flex-wrap px-6">
+    <% @books.each do |book| %>
+      <div class="w-full lg:w-1/2   md:px-4 lg:px-6 py-5">
+          <div class="bg-white hover:shadow-xl">
+              <div class="">
+                  <img src="https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                      class="h-56 w-full border-white border-8 hover:opacity-25">
+              </div>
+              <div class="px-4 py-4 md:px-10">
+                  <h1 class="font-bold text-lg">
+                      <%= book.title %>
+                  </h1>
+                  <p class="py-4">
+                      <%= book.description %>
+                  </p>
+                  <div class="flex flex-wrap pt-8 justify-between">
+                      <div class="w-full md:w-1/3 text-sm font-medium text-xl">
+                          Price: $<%= book.price %>
+                      </div>
+                      <div class="2/3">
+                          <div class="text-sm font-medium text-xl">
+                              <a href="" class="text-blue-400 ">
+                                Add to order
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    <% end %>
+</div>

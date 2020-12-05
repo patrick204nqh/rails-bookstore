@@ -66,7 +66,7 @@
   <a href="/" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-4">
     Orders
   </a>
-  <a href="/users" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-4">
+  <a href="<%= user_path(current_user.id) %>" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-4">
     Accounts
   </a>
     <% if current_user.admin? %>

@@ -3,14 +3,14 @@ module Erp
     class AdminController < Erp::ApplicationController
       before_action :authorization_user
       def index
-        @users = Erp::User.order('created_at DESC').limit(5)
+        @users = Erp::User.all_except(current_user)
       end
 
       private
 
       def authorization_user
         if current_user.admin.nil?
-          redirect_to '/'
+          redirect_to erp.root_path
         end
       end
     end

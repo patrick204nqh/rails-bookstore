@@ -1,0 +1,25 @@
+  <div class="flex">
+  <% if @user.present? %>
+    <div class="w-2/6">Avatar</div>
+    <div class="flex w-4/6 justify-center gap-10 items-center m-5 p-3 border border-gray-200 rounded shadow">
+      <div class="text-gray-700">
+        <div class="text-xl font-medium">Email:</div>
+        <div class="text-xl font-medium">User ID:</div>
+        <div class="text-xl font-medium">Created_at:</div>
+        <div class="text-xl font-medium">Role:</div>
+      </div>
+        <div class="text-gray-600">
+          <div class=""><%= @user.email %></div>
+          <div class=""><%= @user.id %></div>
+          <div class=""><%= @user.created_at%></div>
+          <div class="">
+            <%= check_admin?(@user) %>
+          </div>
+        </div>
+    </div>
+  <% else %>
+    <div class="flex justify-center gap-10 items-center m-5 p-3 border border-gray-200 rounded shadow">
+      User not found
+    </div>
+  <% end %>
+  </div>

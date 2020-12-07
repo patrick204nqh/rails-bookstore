@@ -2,11 +2,13 @@ require_dependency "erp/application_controller"
 
 module Erp
   class CartsController < ApplicationController
+    include CartsHelper
     before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
     # GET /carts
     def index
-      @carts = Cart.all
+      @cart = Erp::Cart.find(session[:cart_id]) rescue nil
+      @list_items = cart_list(@cart)
     end
 
     # GET /carts/1

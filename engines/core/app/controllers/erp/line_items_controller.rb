@@ -28,11 +28,8 @@ module Erp
     # POST /line_items
     def create
       book = Erp::Book.find(params[:book_id])
-      @line_item = @cart.line_items.build(book: book)
-      logger.info '============================'
-      logger.info @cart
-
-      logger.info @cart.line_items
+      # @line_item = @cart.line_items.build(book: book)
+      @line_item = @cart.add_book(book)
 
       if @line_item.save
         redirect_to erp.root_path, notice: 'Line item was successfully created.'

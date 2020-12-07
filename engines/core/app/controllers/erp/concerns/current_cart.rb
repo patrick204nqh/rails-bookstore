@@ -1,6 +1,6 @@
 module CurrentCart
 
-  private 
+  private
 
   def set_cart
     @cart = Erp::Cart.find(session[:cart_id])

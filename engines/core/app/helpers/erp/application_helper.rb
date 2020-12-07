@@ -14,5 +14,14 @@ module Erp
         ['Normal', false]
       ]
     end
+
+    def cart_count
+      count = Erp::LineItem.where(cart_id: session[:cart_id]).count
+      if count > 0
+        return "(#{count})"
+      else
+        return ""
+      end
+    end
   end
 end

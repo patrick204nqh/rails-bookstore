@@ -20,9 +20,7 @@
                       </div>
                       <div class="2/3">
                           <div class="text-sm font-medium text-xl">
-                              <a href="" class="text-blue-400 ">
-                                Add to order
-                              </a>
+                            <%= button_to 'Add to Cart', erp.line_items_path(book_id: book.id), class: "text-blue-400" %>
                           </div>
                       </div>
                   </div>

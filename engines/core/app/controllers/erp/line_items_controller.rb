@@ -1,7 +1,10 @@
 require_dependency "erp/application_controller"
+require "erp/concerns/current_cart"
 
 module Erp
   class LineItemsController < ApplicationController
+    include CurrentCart
+    before_action :set_cart
     before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
     # GET /line_items
@@ -24,10 +27,15 @@ module Erp
 
     # POST /line_items
     def create
-      @line_item = LineItem.new(line_item_params)
+      book = Erp::Book.find(params[:book_id])
+      @line_item = @cart.line_items.build(book: book)
+      logger.info '============================'
+      logger.info @cart
+
+      logger.info @cart.line_items
 
       if @line_item.save
-        redirect_to @line_item, notice: 'Line item was successfully created.'
+        redirect_to erp.root_path, notice: 'Line item was successfully created.'
       else
         render :new
       end
@@ -51,12 +59,19 @@ module Erp
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_line_item
-        @line_item = LineItem.find(params[:id])
+        @line_item = Erp::LineItem.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
       def line_item_params
         params.fetch(:line_item, {})
       end
+
+      # def set_cart
+      #  @cart = Erp::Cart.find(session[:cart_id])
+      # rescue ActiveRecord::RecordNotFound
+      #  @cart = Erp::Cart.create
+      #  session[:cart_id] = @cart.id
+      # end
   end
 end

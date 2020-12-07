@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_061218) do
+ActiveRecord::Schema.define(version: 2020_12_01_055636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,16 +21,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_061218) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "erp_order_details", force: :cascade do |t|
-    t.integer "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "order_id"
-    t.bigint "book_id"
-    t.index ["book_id"], name: "index_erp_order_details_on_book_id"
-    t.index ["order_id"], name: "index_erp_order_details_on_order_id"
   end
 
   create_table "erp_orders", force: :cascade do |t|
@@ -54,7 +44,5 @@ ActiveRecord::Schema.define(version: 2020_12_01_061218) do
     t.index ["reset_password_token"], name: "index_erp_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "erp_order_details", "erp_books", column: "book_id"
-  add_foreign_key "erp_order_details", "erp_orders", column: "order_id"
   add_foreign_key "erp_orders", "erp_users", column: "user_id"
 end

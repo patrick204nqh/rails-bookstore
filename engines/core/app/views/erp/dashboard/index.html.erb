@@ -19,9 +19,7 @@
                           Price: $<%= book.price %>
                       </div>
                       <div class="2/3">
-                          <div class="text-sm font-medium text-xl">
-                            <%= button_to 'Add to Cart', erp.line_items_path(book_id: book.id), class: "text-blue-400" %>
-                          </div>
+                        <%= button_to 'Add to Cart', erp.line_items_path(book_id: book.id), class: "text-blue-400 text-xl bg-white font-medium" %>
                       </div>
                   </div>
               </div>

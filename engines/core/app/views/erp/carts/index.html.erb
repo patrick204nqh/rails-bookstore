@@ -1,7 +1,6 @@
 <div class="bg-white pb-4 px-4 rounded-md w-full">
-
-    <div class="overflow-x-auto mt-6">
-
+  <div class="overflow-x-auto mt-6">
+    <% if @list_items %>
       <table class="table-auto border-collapse w-full">
         <thead>
           <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
@@ -12,20 +11,24 @@
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
-
-          <% @list_items.each do |item| %>
-            <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-              <td class="px-4 py-4"><%= item.book.title %></td>
-              <td class="px-4 py-4"><%= item.book.created_at %></td>
-              <td class="px-4 py-4"><%= item.book.price %> $</td>
-              <td class="px-4 py-4"><%= item.quantity %></td>
-            </tr>
+            <% @list_items.each do |item| %>
+              <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
+                <td class="px-4 py-4"><%= item.book.title %></td>
+                <td class="px-4 py-4"><%= item.book.created_at %></td>
+                <td class="px-4 py-4"><%= item.book.price %> $</td>
+                <td class="px-4 py-4"><%= item.quantity %></td>
+              </tr>
           <% end %>
         </tbody>
       </table>
-    </div>
-
-    </div>
+    <% else %>
+      <div class="bg-orange-lightest border-l-4 border-orange text-orange-dark p-4" role="alert">
+        <p class="font-bold">Cart empty</p>
+        <p>You can add some book into Cart.</p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <style>
 

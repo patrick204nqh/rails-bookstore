@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_081613) do
   create_table "erp_line_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "cart_id"
+    t.integer "cart_id"
     t.bigint "order_id"
     t.bigint "book_id"
     t.integer "quantity", default: 1

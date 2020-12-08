@@ -8,7 +8,7 @@ module Erp
     # GET /carts
     def index
       @cart = Erp::Cart.find(session[:cart_id]) rescue nil
-      @list_items = cart_list(@cart)
+      @list_items = cart_list(@cart) rescue nil
     end
 
     # GET /carts/1

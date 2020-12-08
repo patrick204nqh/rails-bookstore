@@ -4,6 +4,7 @@ require "securerandom"
 
 module Erp
   class OrdersController < ApplicationController
+    include OrdersHelper
     include CurrentCart
     before_action :set_cart, only: [:new, :create]
     before_action :ensure_cart_isnt_empty, only: :new
@@ -11,7 +12,7 @@ module Erp
 
     # GET /orders
     def index
-      @orders = Order.all
+      @orders = Erp::Order.get_orders(current_user)
     end
 
     # GET /orders/1
@@ -31,7 +32,7 @@ module Erp
     def create
       @order = Order.new(code: SecureRandom.hex(10), user_id: current_user.id)
       @order.add_line_items_from_cart(@cart)
-      # @order = total_price(@order)
+      @order.total = total_price(@order)
 
       if @order.save
         Erp::Cart.destroy(session[:cart_id])

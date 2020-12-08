@@ -3,7 +3,7 @@ module Erp
 
     def total_price(order)
       total_price = 0
-      order.line_items do |item|
+      order.line_items.each do |item|
         total_price += item.book.price * item.quantity
       end
       total_price

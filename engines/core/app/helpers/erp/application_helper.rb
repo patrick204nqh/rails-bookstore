@@ -23,5 +23,14 @@ module Erp
         return ""
       end
     end
+
+    def order_count
+      count = Erp::LineItem.where(order_id: current_user.orders).count
+      if count > 0
+        return "(#{count})"
+      else
+        return ""
+      end
+    end
   end
 end

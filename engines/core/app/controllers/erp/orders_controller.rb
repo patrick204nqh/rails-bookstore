@@ -30,6 +30,7 @@ module Erp
     def create
       @order = Order.new(order_params)
       @order.add_line_items_from_cart(@cart)
+      # @order = total_price(@order)
 
       if @order.save
         Erp::Cart.destroy(session[:cart_id])

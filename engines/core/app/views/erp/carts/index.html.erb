@@ -1,6 +1,6 @@
 <div class="bg-white pb-4 px-4 rounded-md w-full">
   <div class="overflow-x-auto mt-6">
-    <% if @list_items %>
+    <% if @cart %>
       <table class="table-auto border-collapse w-full">
         <thead>
           <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
@@ -8,6 +8,7 @@
             <th class="px-4 py-2 " style="background-color:#f8f8f8">Created At</th>
             <th class="px-4 py-2 " style="background-color:#f8f8f8">Price</th>
             <th class="px-4 py-2 " style="background-color:#f8f8f8">Quantity</th>
+            <th class="px-4 py-2 " style="background-color:#f8f8f8"></th>
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
@@ -17,6 +18,12 @@
                 <td class="px-4 py-4"><%= item.book.created_at %></td>
                 <td class="px-4 py-4"><%= item.book.price %> $</td>
                 <td class="px-4 py-4"><%= item.quantity %></td>
+                <td class="px-4 py-4" style="color:#e63946">
+                  <%= button_to 'Delete', erp.line_item_path(id: item.id),
+                    method: :delete,
+                    class: "font-bold hover:text-red-700 cursor-pointer bg-transparent"
+                  %>
+                </td>
               </tr>
           <% end %>
         </tbody>

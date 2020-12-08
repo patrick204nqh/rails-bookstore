@@ -50,7 +50,7 @@ module Erp
     # DELETE /line_items/1
     def destroy
       @line_item.destroy
-      redirect_to line_items_url, notice: 'Line item was successfully destroyed.'
+      redirect_to erp.carts_url, notice: 'Book has been deleted'
     end
 
     private

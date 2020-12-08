@@ -1,7 +1,11 @@
 require_dependency "erp/application_controller"
+require "erp/concerns/current_cart"
 
 module Erp
   class OrdersController < ApplicationController
+    include CurrentCart
+    before_action :set_cart, only: [:new, :create]
+    before_action :ensure_cart_isnt_empty, only: :new
     before_action :set_order, only: [:show, :edit, :update, :destroy]
 
     # GET /orders
@@ -25,9 +29,12 @@ module Erp
     # POST /orders
     def create
       @order = Order.new(order_params)
+      @order.add_line_items_from_cart(@cart)
 
       if @order.save
-        redirect_to @order, notice: 'Order was successfully created.'
+        Erp::Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        redirect_to erp.root_path, notice: 'Thank you for your order'
       else
         render :new
       end
@@ -57,6 +64,12 @@ module Erp
       # Only allow a trusted parameter "white list" through.
       def order_params
         params.require(:order).permit(:code)
+      end
+
+      def ensure_cart_isnt_empty
+        if @cart.line_items.empty?
+          redirect_to erp.root_path, notice: 'Your cart is empty, please choose some books.'
+        end
       end
   end
 end

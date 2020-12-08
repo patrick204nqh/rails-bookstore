@@ -1,5 +1,6 @@
 require_dependency "erp/application_controller"
 require "erp/concerns/current_cart"
+require "securerandom"
 
 module Erp
   class OrdersController < ApplicationController
@@ -28,7 +29,7 @@ module Erp
 
     # POST /orders
     def create
-      @order = Order.new(order_params)
+      @order = Order.new(code: SecureRandom.hex(10), user_id: current_user.id)
       @order.add_line_items_from_cart(@cart)
       # @order = total_price(@order)
 
@@ -63,9 +64,9 @@ module Erp
       end
 
       # Only allow a trusted parameter "white list" through.
-      def order_params
-        params.require(:order).permit(:code)
-      end
+      # def order_params
+      #   params.require(:order).permit(:code)
+      # end
 
       def ensure_cart_isnt_empty
         if @cart.line_items.empty?

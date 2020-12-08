@@ -1,37 +1,7 @@
 <div class="bg-white pb-4 px-4 rounded-md w-full">
   <div class="overflow-x-auto mt-6">
-    <% if @cart %>
-      <table class="table-auto border-collapse w-full">
-        <thead>
-          <tr class="rounded-lg text-sm font-medium text-gray-700 text-left" style="font-size: 0.9674rem">
-            <th class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">Title</th>
-            <th class="px-4 py-2 " style="background-color:#f8f8f8">Created At</th>
-            <th class="px-4 py-2 " style="background-color:#f8f8f8">Price</th>
-            <th class="px-4 py-2 " style="background-color:#f8f8f8">Quantity</th>
-            <th class="px-4 py-2 " style="background-color:#f8f8f8"></th>
-          </tr>
-        </thead>
-        <tbody class="text-sm font-normal text-gray-700">
-            <% @list_items.each do |item| %>
-              <tr class="hover:bg-gray-100 border-b border-gray-200 py-10">
-                <td class="px-4 py-4"><%= item.book.title %></td>
-                <td class="px-4 py-4"><%= item.book.created_at %></td>
-                <td class="px-4 py-4"><%= item.book.price %> $</td>
-                <td class="px-4 py-4"><%= item.quantity %></td>
-                <td class="px-4 py-4" style="color:#e63946">
-                  <%= button_to 'Delete', erp.line_item_path(id: item.id),
-                    method: :delete,
-                    class: "font-bold hover:text-red-700 cursor-pointer bg-transparent"
-                  %>
-                </td>
-              </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="bg-gray-100 p-2 m-2 font-bold ">
-        Total Price:<span class="text-xl text-yellow-600"> <%= cart_total(@list_items) %></span>$
-      </div>
-
+    <% if @list_items.first %>
+     <%= render 'cart' %>
     <% else %>
       <div class="bg-orange-lightest border-l-4 border-orange text-orange-dark p-4" role="alert">
         <p class="font-bold">Cart empty</p>

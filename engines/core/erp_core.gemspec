@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "bootstrap"
   spec.add_dependency "webpacker"
   spec.add_dependency "tailwindcss"
+  spec.add_dependency "securerandom"
 end

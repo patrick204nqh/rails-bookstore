@@ -1,6 +1,14 @@
-  <div class="flex">
   <% if @user.present? %>
-    <div class="w-2/6">Avatar</div>
+  <div class="flex">
+    <div class="w-2/6">
+      <div class="p-5">
+        <% if @user.avatar.present? %>
+          <img src="/uploads/erp/user/user_<%= @user.id %>.jpg" />
+        <% else %>
+          <img src="https://i.stack.imgur.com/l60Hf.png">
+        <% end %>
+      </div>
+    </div>
     <div class="flex w-4/6 justify-center gap-10 items-center m-5 p-3 border border-gray-200 rounded shadow">
       <div class="text-gray-700">
         <div class="text-xl font-medium">Email:</div>
@@ -17,9 +25,15 @@
           </div>
         </div>
     </div>
+  </div>
+  <div class="flex">
+    <%= link_to 'Edit',
+      erp.edit_user_path(current_user.id),
+      class: 'border border-yellow-400 bg-yellow-400 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-yellow-600 focus:outline-none focus:shadow-outline'
+    %>
+  </div>
   <% else %>
     <div class="flex justify-center gap-10 items-center m-5 p-3 border border-gray-200 rounded shadow">
       User not found
     </div>
   <% end %>
-  </div>

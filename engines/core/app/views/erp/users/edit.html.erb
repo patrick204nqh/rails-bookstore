@@ -1,0 +1,12 @@
+  <% if @user.present? %>
+    <%= render 'form', user: @user %>
+  <% else %>
+    <div class="flex justify-center gap-10 items-center m-5 p-3 border border-gray-200 rounded shadow">
+      User not found
+    </div>
+  <% end %>
+
+
+
+
+

@@ -1,6 +1,6 @@
 module Erp
   class UsersController < ApplicationController
-    before_action :set_user, only: [:update, :destroy]
+    before_action :set_user, only: [:update, :destroy, :edit]
     def index
     end
 
@@ -8,10 +8,13 @@ module Erp
       @user = Erp::User.find(current_user.id)
     end
 
+    def edit
+    end
+
     def update
-      if @user.update(user_params)
-        redirect_to admin_path
-        flash[:notice] = 'User role update successfully'
+      if @user.update_attributes(user_params)
+        redirect_to @user
+        flash[:notice] = 'User profile update successfully'
       end
     end
 
@@ -27,7 +30,7 @@ module Erp
     end
 
     def user_params
-      params.require(:user).permit(:admin)
+      params.require(:user).permit(:avatar, :email)
     end
   end
 end

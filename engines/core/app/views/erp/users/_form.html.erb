@@ -1,0 +1,40 @@
+<%= form_with(model: user, local: true) do |form| %>
+<div class="flex">
+  <div class="w-2/6">
+    <div class="p-5">
+        <% if @user.avatar.present? %>
+          <img src="/uploads/erp/user/user_<%= @user.id %>.jpg" />
+        <% else %>
+          <img src="https://i.stack.imgur.com/l60Hf.png">
+        <% end %>
+      </div>
+  </div>
+  <div class="flex w-4/6 justify-center gap-10 items-center m-5 p-3 border border-gray-200 rounded shadow">
+    <div class="text-gray-700">
+      <div class="text-xl font-medium">Email:</div>
+      <div class="text-xl font-medium">User ID:</div>
+      <div class="text-xl font-medium">Created_at:</div>
+      <div class="text-xl font-medium">Role:</div>
+    </div>
+      <div class="text-gray-600">
+        <div><%= form.text_field :email %></div>
+        <div><%= @user.id %></div>
+        <div><%= @user.created_at%></div>
+        <div><%= check_admin?(@user) %></div>
+      </div>
+  </div>
+</div>
+<div class="flex">
+  <%= form.file_field :avatar, class: 'border border-blue-500 bg-blue-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-blue-600 focus:outline-none focus:shadow-outline' %>
+  <%= button_to 'Save',
+    erp.user_path(@user.id),
+    method: :put,
+    class: 'border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline'
+  %>
+  <%= link_to 'Back',
+    erp.user_path(current_user.id),
+    class: 'border border-gray-500 bg-gray-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-600 focus:outline-none focus:shadow-outline'
+  %>
+</div>
+
+<% end %>

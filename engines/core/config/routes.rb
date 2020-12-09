@@ -4,7 +4,7 @@ Erp::Core::Engine.routes.draw do
   resources :orders, only: [:new, :create, :index, :destroy]
   resources :books
   devise_for :users, class_name: "Erp::User", module: :devise
-  resources :users, only: [:update, :destroy, :show]
+  resources :users, only: [:update, :destroy, :show, :edit]
   root to: 'dashboard#index'
   namespace :admin do
     get '/' => 'admin#index'

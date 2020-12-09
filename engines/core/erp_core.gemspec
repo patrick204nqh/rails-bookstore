@@ -32,4 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "webpacker"
   spec.add_dependency "tailwindcss"
   spec.add_dependency "securerandom"
+  spec.add_dependency "carrierwave"
+  spec.add_dependency 'mini_magick'
 end

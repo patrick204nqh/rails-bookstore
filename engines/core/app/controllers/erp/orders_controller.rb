@@ -37,6 +37,7 @@ module Erp
       if @order.save
         Erp::Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
+        Erp::OrdersMailer.confirm_order_success(current_user).deliver
         redirect_to erp.root_path, notice: 'Thank you for your order'
       else
         render :new

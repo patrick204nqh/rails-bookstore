@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <h1>PatrickStore</h1>
+    You have ordered successfully, please check via website <a>PatrickStore.com</a>
+    <br>
+    or contact me <a href=""><%= @user.email %></a>
+    <hr>
+    <h4>You had orderd</h4>
+    <% @user.orders.each do |item| %>
+      <%= item.code %> | Total price: <%= item.total %>
+      <br>
+    <% end %>
+  </body>
+</html>

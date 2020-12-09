@@ -1,6 +1,8 @@
-module Core
+module Erp
   class ApplicationMailer < ActionMailer::Base
-    default from: 'from@example.com'
+    default from: 'nguyenquanghuy0156@gmail.com'
     layout 'mailer'
+
+
   end
 end
